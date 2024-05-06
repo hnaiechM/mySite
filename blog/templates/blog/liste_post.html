@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Posts</title>
+</head>
+
+<body>
+  <h1>Liste des Posts</h1>
+  <ul>
+    {% for post in post %}
+
+    {% include 'blog/detail_post.html'%}
+    {% endfor %}
+
+  </ul>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+{% extends 'magasin/base.html' %}
+{% block content %}
+<style>
+  <style>.helptext {
+    color: #888;
+    font-style: italic;
+  }
+
+  .fieldWrapper {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  input[type="text"],
+  input[type="date"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+</style>
+</style>
+<h1>Nouveau fournisseur</h1>
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="form-group">
+    {{ field.errors }}
+    {{ field.label_tag }}
+    {{ field }}
+  </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary">Créer</button>
+</form>
+
+<h2>Liste des fournisseurs</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Adresse</th>
+      <th>Téléphone</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fournisseur in fournisseurs %}
+    <tr>
+      <td>{{ fournisseur.nom }}</td>
+      <td>{{ fournisseur.adresse }}</td>
+      <td>{{ fournisseur.telephone }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

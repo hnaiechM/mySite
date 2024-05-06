@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>
+    {% block title %} {% endblock %}
+  </title>
+  <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/base.css'%}">
+  <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/fournisseur.css'%}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    .navbar {
+      padding: 0.5rem 1rem;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    .navbar-brand img {
+      border-radius: 50%;
+    }
+
+    .navbar-nav {
+      margin-left: auto;
+    }
+
+    .nav-link {
+      font-size: 1.1rem;
+      margin-right: 1rem;
+      color: #333;
+    }
+
+    .nav-link:hover {
+      color: #007bff;
+    }
+
+    .form-control {
+      border-radius: 2rem;
+    }
+
+    .btn-outline-success {
+      border-radius: 2rem;
+    }
+
+    @media (max-width: 767.98px) {
+      .navbar-brand {
+        margin-right: 0;
+      }
+    }
+  </style>
+  {% block styles %} {% endblock %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">
+        <img src="/media/online-shop.png" alt="**" width="100" height="60">
+      </a>
+
+      <a class="navbar-brand" href="#">SHOP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'liste' %}">Produits</a>
+          </li>
+
+          <a class="nav-link active" aria-current="page" href="{% url 'V' %}">vitrine</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'nouveauFour' %}">Fournisseur</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'nouveauComm'%}">Commande<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/admin">admin</a>
+          </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="#">{{user}}🤞</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'logout'%}">Déconnexion</a>
+          </li>
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'login'%}">Connexion</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'register'%}">Inscription</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>

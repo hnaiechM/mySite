@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Détails du Post</title>
+</head>
+
+<body>
+  <h1>Titre du Post : {{ post.title }}</h1>
+  <p>Slug : {{ post.slug }}</p>
+  <p>Content : {{ post.content }}</p>
+
+  <td> <img src='/media/{{post.image}}' alt="Profile Pic" height="40px" width="40px" /></td>
+  <li><a href="{% url 'detail_post' post.pk %}">Detail du post</a></li>
+  <li><a href="{% url 'modifier_post' post.pk %}"> Modifier</a></li>
+  <li><a href="{% url 'supprimer_post' post.pk %}">Supprimer </a></li>
+
+
+</body>
+
+</html>
