@@ -16,6 +16,19 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth import login
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from magasin.models import Categorie
+from magasin.serializers import CategorySerializer
+#def home(request):
+ # return render(request, 'base.html')
+
+class CategoryAPIView(APIView):
+ def get(self, *args, **kwargs):
+  categories = Categorie.objects.all()
+  serializer = CategorySerializer(categories, many=True)
+  return Response(serializer.data)
+  
 @login_required
 def home(request):
   products= Produit.objects.all()

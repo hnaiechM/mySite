@@ -23,9 +23,11 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('', home, name='home'),
     path('magasin/', include('magasin.urls')),
     path('blog/',include('blog.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('login/',auth_views.LoginView.as_view(template_name='registration/login.html'), name = 'login'),
     path('login/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name = 'logout'),
+    path('api-auth/', include('rest_framework.urls')),
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
