@@ -1,0 +1,44 @@
+{% extends 'magasin/base.html' %}
+{% block title %} Accueil {% endblock title %}
+{% block content %}
+<!-- body -->
+<div class="container-fluid mt-3">
+  <div class="row">
+    <!-- all products -->
+    <div id='products' class="col-lg-9 mx-auto">
+      <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="/media/{{ product.img }}" class="card-img-top" alt="{{ product.libelle }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.libelle }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- colonne latérale -->
+    <div class="col-lg-3">
+      <!-- card pour le blog -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Blog</h5>
+          <p class="card-text">Découvrez nos dernières publications sur notre blog.</p>
+          <a href="/blog" class="btn btn-primary">Aller au Blog</a>
+        </div>
+      </div>
+      <!-- card pour le magasin -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Magasin</h5>
+          <p class="card-text">Découvrez nos dernières articles sur notre Magasin.</p>
+          <a href="/magasin" class="btn btn-primary">Aller au Magasin</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

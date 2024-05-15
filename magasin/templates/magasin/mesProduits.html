@@ -1,5 +1,5 @@
 {% extends 'magasin/base.html' %}
-{% block title %} Catalogue de produits {% endblock title %}
+{% block title %} Accueil {% endblock title %}
 {% block content %}
 <!-- body -->
 <div class="container-fluid mt-3">
@@ -17,6 +17,17 @@
           </div>
         </div>
         {% endfor %}
+      </div>
+    </div>
+    <!-- lien vers le blog -->
+    <div class="col-lg-3">
+      <div class="card">
+        <img src="/media/blog-image.jpg" class="card-img-top" alt="Blog Image">
+        <div class="card-body">
+          <h5 class="card-title">Blog</h5>
+          <p class="card-text">Découvrez nos dernières publications sur notre blog.</p>
+          <a href="#" class="btn btn-primary">Aller au Blog</a>
+        </div>
       </div>
     </div>
   </div>

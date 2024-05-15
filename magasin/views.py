@@ -20,6 +20,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from magasin.models import Categorie
 from magasin.serializers import CategorySerializer
+from magasin.serializers import ProduitSerializer
+from rest_framework import viewsets
+
+
 #def home(request):
  # return render(request, 'base.html')
 
@@ -28,7 +32,22 @@ class CategoryAPIView(APIView):
   categories = Categorie.objects.all()
   serializer = CategorySerializer(categories, many=True)
   return Response(serializer.data)
-  
+
+class ProduitAPIView(APIView):
+    def get(self, *args, **kwargs):
+      produits= Produit.objects.all()
+      serializer = ProduitSerializer(produits, many=True)
+      return Response(serializer.data)
+
+class ProductViewset(viewsets.ReadOnlyModelViewSet):
+  serializer_class = ProduitSerializer
+  def get_queryset(self):
+    queryset = Produit.objects.all()
+    category_id = self.request.GET.get('category_id')
+    if category_id:
+      queryset = queryset.filter(categorie_id=category_id)
+    return queryset
+
 @login_required
 def home(request):
   products= Produit.objects.all()

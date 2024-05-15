@@ -1,36 +1,111 @@
-{% extends "magasin/base.html" %}
-{% block content %}
-<h2>Se connecter </h2>
-<div>
-  <form method="post">
-    {% csrf_token %}
-    {% if form.non_field_errors %}
-    {% for error in form.non_field_errors %}
-    <p class="alert alert-danger">{{ error }}</p>
-    {% endfor %}
-    {% endif %}
-    <table>
-      {% for field in form %}
-      <tr>
-        <td>{{ field.label_tag }}</td>
-        <td>{{ field }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-    <button type="submit">se connecter</button>
-  </form>
-</div>
-<div>
-  <small>
-    Pas encore inscrit.e?
-    <a href="{% url 'register' %}">
-      S'inscrire
-    </a>
-    <br>
-    Mot de passe oublié ?
-    <a href="{% url 'password_reset' %}">
-      Renouveler mon mot de passe
-    </a>
-  </small>
-</div>
-{% endblock %}
+<html>
+
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .login-container {
+      width: 400px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+    }
+
+    .login-container h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333333;
+    }
+
+    .login-form {
+      display: grid;
+      grid-gap: 15px;
+    }
+
+    .login-form label {
+      font-size: 16px;
+      color: #555555;
+      margin-bottom: 5px;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .login-form button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    .login-form button:hover {
+      background-color: #0056b3;
+    }
+
+    .register-link,
+    .password-reset-link {
+      margin-top: 15px;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  {% block content %}
+  <div class="login-container">
+    <h2>Connexion</h2>
+    <div class="login-form">
+      <form method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p class="alert alert-danger">{{ error }}</p>
+        {% endfor %}
+        {% endif %}
+        <label for="id_username">Nom d'utilisateur</label>
+        <input type="text" id="id_username" name="username">
+        <label for="id_password">Mot de passe</label>
+        <input type="password" id="id_password" name="password">
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+    <div class="register-link">
+      Pas encore inscrit.e? <a href="{% url 'register' %}">S'inscrire</a>
+    </div>
+    <div class="password-reset-link">
+      Mot de passe oublié ? <a href="{% url 'password_reset' %}">Réinitialiser le mot de passe</a>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+
+</html>

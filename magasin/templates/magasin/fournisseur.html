@@ -1,50 +1,79 @@
 {% extends 'magasin/base.html' %}
 {% block content %}
 <style>
-  <style>.helptext {
-    color: #888;
-    font-style: italic;
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
   }
 
-  .fieldWrapper {
+  h1,
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .form-group {
     margin-bottom: 1rem;
   }
 
   label {
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
   }
 
   input[type="text"],
-  input[type="date"] {
+  input[type="date"],
+  input[type="tel"] {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid #ced4da;
     border-radius: 4px;
     box-sizing: border-box;
   }
 
   input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
   input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+
+  td {
+    background-color: #f9f9f9;
   }
 </style>
-</style>
+
 <h1>Nouveau fournisseur</h1>
 <form method="post">
   {% csrf_token %}
   {% for field in form %}
   <div class="form-group">
-    {{ field.errors }}
-    {{ field.label_tag }}
+    <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
     {{ field }}
   </div>
   {% endfor %}

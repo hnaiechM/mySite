@@ -1,11 +1,86 @@
 {% extends 'magasin/base.html' %}
+
 {% block content %}
-<div class="col-md-12 text-center">
-  <h2>Manipulation Produit ...... </h2>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    margin-top: 50px;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .card-body {
+    padding: 30px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+
+  .btn-default {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-default:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header text-center">
+      <h2>Manipulation Produit</h2>
+    </div>
+    <div class="card-body">
+      <form method='POST' class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-default">Enregistrer</button>
+      </form>
+    </div>
+  </div>
 </div>
-<form method='POST' class="post-form">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="sumit" class="btn btn-default">Enregistrer</button>
-</form>
 {% endblock %}

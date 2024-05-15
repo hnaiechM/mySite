@@ -1,16 +1,84 @@
 {% extends 'magasin/base.html' %}
+
 {% block content %}
-<div class="col-md-12 text-center">
-  <h2>Ajout commande</h2>
-</div>
-<form method="post" action="{% url 'nouveauComm' %}" class="post-form">
-  {% csrf_token %}
-  <div class="form-group">
-    {{ form.as_p }}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    margin-top: 50px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    width: 80%;
+    margin-bottom: 15px;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .card-text {
+    font-size: 16px;
+  }
+</style>
+
+<div class="container">
+  <div class="col-md-12 text-center">
+    <h2>Ajout commande</h2>
   </div>
-  <button type="submit" class="btn btn-primary">Enregistrer</button>
-</form>
-<div class="container mt-3">
+  <form method="post" action="{% url 'nouveauComm' %}" class="post-form">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
   <div class="row">
     <div id='commandes' class="col-lg-9 mx-auto">
       <div class="row">
@@ -18,7 +86,7 @@
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ commande.id }}</h5>
+              <h5 class="card-title">Commande {{ commande.id }}</h5>
               <p class="card-text">Date Commande : {{ commande.dateCde }}</p>
               <p class="card-text">Produit : {{ commande.produit }}</p>
               <p class="card-text">Total Commande : {{ commande.totalCde }}</p>
